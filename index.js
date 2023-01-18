@@ -49,5 +49,5 @@ class ProductManager {
  //products.getProductbyId(2);
 //Valido que no se repita el codigo.
  products.addProduct('Lampara','ilumina', 100, 'lalallalala.com', 'abc123', 3);
-console.log(products.getProduct());
+
 
