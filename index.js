@@ -38,15 +38,15 @@ class ProductManager {
 
 // Valido el array products.
  const products = new ProductManager;
-// console.log(products.getProduct());
+ console.log(products.getProduct());
 //Valido el metodo addProduct con productos
  products.addProduct('Silla','blablabla', 120, 'lalala.com', 'abc123', 3);
- //console.log(products.getProduct());
+ console.log(products.getProduct());
  //Valido la funcionabilidad del id autoincremental.
  products.addProduct('Mesa','tiene cuatro patas', 200, 'lalalalalalala.com', 'abc124', 6);
- //console.log(products.getProduct());
+ console.log(products.getProduct());
  //Valido el metodo getProductbyId.
- //products.getProductbyId(2);
+ products.getProductbyId(2);
 //Valido que no se repita el codigo.
  products.addProduct('Lampara','ilumina', 100, 'lalallalala.com', 'abc123', 3);
 
