@@ -6,7 +6,7 @@ class ProductManager {
             static id = 0;
 //Creo el metodo addProduct.            
     addProduct(title, description, price, thumbmail, code, stock){
-        for(let i=0; i< this.products.length; i++){
+        for(let i=0; i<  this.products.length; i++){
             if(this.products[i].code === code){
                 console.log('el codigo ya existe');
                 break;
@@ -49,5 +49,4 @@ class ProductManager {
  products.getProductbyId(2);
 //Valido que no se repita el codigo.
  products.addProduct('Lampara','ilumina', 100, 'lalallalala.com', 'abc123', 3);
-
-
+ console.log(products.getProduct());
