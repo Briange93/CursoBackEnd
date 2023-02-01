@@ -2,7 +2,7 @@ import {promises as fs} from "fs";
 
 export default class ProductManager{
     constructor(){
-        this.path = './src/products.txt';
+        this.path = './src/products.json';
         this.products = [];
 
     }
