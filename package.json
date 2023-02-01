@@ -1,3 +1,27 @@
 {
-    "type" : "module"
+  "type": "module",
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "desafio1.js",
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "scripts": {
+    "start": "nodemon src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Briange93/CursoBackEnd.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Briange93/CursoBackEnd/issues"
+  },
+  "homepage": "https://github.com/Briange93/CursoBackEnd#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
