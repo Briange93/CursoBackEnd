@@ -3,6 +3,8 @@ import {promises as fs} from "fs";
 export default class ProductManager{
     constructor(){
         this.path = './src/models/products.json';
+        this.products = [];
+
     }
     static id = 0;
 
@@ -17,10 +19,10 @@ export default class ProductManager{
             stock: product.stock,
             id : ProductManager.id
     }
-    let oldProducts = await this.readProducts()
-    oldProducts.push(newProduct)
-    await fs.writeFile(this.path, JSON.stringify(oldProducts));
+    this.products.push(newProduct)
+    await fs.writeFile(this.path, JSON.stringify(this.products));
    
+ 
   }
     readProducts = async () =>{
     let respuesta = await fs.readFile(this.path, 'utf-8')
