@@ -2,7 +2,7 @@ import {promises as fs} from "fs";
 
 export default class ProductManager{
     constructor(){
-        this.path = './src/products.json';
+        this.path = './src/models/products.json';
         this.products = [];
 
     }
@@ -11,7 +11,6 @@ export default class ProductManager{
     addProduct = async(title, description, price, thumbmail, code, stock) =>{
         ProductManager.id++
         let newProduct = {
-        
             title,
             description,
             price,

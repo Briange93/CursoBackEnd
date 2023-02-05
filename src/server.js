@@ -1,7 +1,5 @@
-import express from 'express'
-import { read } from 'fs';
-import * as http from 'http'
-import ProductManager from './ProductManager.js';
+import express from 'express';
+import ProductManager from './routes/ProductManager.js';
 const app = express();
 
 app.use(express.urlencoded({extended:true}))
@@ -23,8 +21,15 @@ let allProducts = await readProducts;
 let productById =allProducts.find(product => product.id ===id);
 res.send(productById)
 });
-
-const PORT = 5000
+app.post('/products', async(req,res) =>{
+    let message = await productos.addProduct(req.body)
+    res.send(message);
+})
+app.delete('/products/:id', async (req,res) =>{
+    let message = await productos.deleteProductsById(req.params.id, req.body)
+    res.send(message)
+})
+const PORT = 8080
 const server = app.listen(PORT, () => {
     console.log(`Server on Port ${PORT}`);
 })
