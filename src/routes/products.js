@@ -1,20 +1,15 @@
 import {Router} from 'express';
 const routerProd = Router();
 import  ProductManager  from "../controllers/ProductManager.js"
-const productos = new ProductManager('src/models/products.json');
-const readProducts = productos.readProducts();
+const productos = new ProductManager('src/models/products.txt');
 
 routerProd.get('/products', async (req, res) => {
-    let limit = parseInt(req.query.limit);
-    if(!limit) return res.send(await readProducts);
-    let allproducts = await readProducts;
-    let prodLimit = allproducts.slice(0,limit);
-    console.log(limit);
-    res.send(await prodLimit);
+    let allProducts = await productos.getProducts()
+    res.send(allProducts);
 });
 routerProd.get('/products/:id', async (req, res) =>{
 let id = parseInt(req.params.id);
-let allProducts = await readProducts;
+let allProducts = await productos.getProducts();
 let productById =allProducts.find(product => product.id ===id);
 res.send(productById)
 });
