@@ -33,6 +33,7 @@ export default class ProductManager{
     producto.id = ProductManager.incrementarID()
     prods.push(producto)
     await fs.writeFile(this.path, JSON.stringify(prods))
+    return 'producto creado'
   }
  
     getProducts = async() =>{
