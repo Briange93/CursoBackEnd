@@ -3,12 +3,17 @@ import {promises as fs} from "fs";
 export default class ProductManager{
     constructor(){
         this.path = './src/models/products.json';
-        this.products = [];
-
     }
-    static id = 0;
+    static incrementarID() {
+        if(this.idIncrement) {
+            this.idIncrement++
+        } else {
+            this.idIncrement = 1
+        }
+        return this.idIncrement
+    }
 
-    addProduct = async(product) =>{
+    /*addProduct = async(product) =>{
         ProductManager.id++
         let newProduct = {
             title: product.title,
@@ -19,11 +24,18 @@ export default class ProductManager{
             stock: product.stock,
             id : ProductManager.id
     }
-    this.products.push(newProduct)
-    await fs.writeFile(this.path, JSON.stringify(this.products));
-   
- 
+    let oldProducts = await this.readProducts();
+    oldProducts.push(newProduct)
+    await fs.writeFile(this.path, JSON.stringify(oldProducts));
+   */
+  addProduct = async (producto) =>{
+    const prods = JSON.parse(await fs.readFile(this.path, 'utf-8'))
+    producto.id = ProductManager.incrementarID()
+    prods.push(producto)
+    await fs.writeFile(this.path, JSON.stringify(prods))
   }
+ 
+  
     readProducts = async () =>{
     let respuesta = await fs.readFile(this.path, 'utf-8')
     return JSON.parse(respuesta);
