@@ -1,5 +1,4 @@
 import {promises as fs} from "fs";
-
 export default class ProductManager{
     constructor(){
         this.path = './src/models/products.txt';
@@ -34,6 +33,7 @@ export default class ProductManager{
         let deleteById = respuesta.filter(product => product.id  != id)
         console.log(deleteById);
         await fs.writeFile(this.path, JSON.stringify(deleteById));
+        return 'producto eliminado'
     }
 }
 
