@@ -13,13 +13,13 @@ routerCart.post('/', async (req, res) => {
       let message = await cartManager.createCart()
       res.json(message)
   })
-  //hasta aca vamos bien.
+ 
 
 routerCart.get('/:cid', async (req, res) => {
       const cart = await cartManager.getCartByID(parseInt(req.params.cid))
       res.send(cart.products ?? [])
   })
-
+ //hasta aca vamos bien.
 routerCart.post('/:cid/products/:pid',async (req, res) => {
     const params = req.params
       await cartManager.addItemToCart(parseInt(params.cid), parseInt(params.pid))

@@ -24,6 +24,7 @@ export default class CartManager {
     const cartFound = cartDB.find((item) => item.id === cid)
     return cartFound ?? []
   }
+   //hasta aca vamos bien.
   async addItemToCart(cartid, prodid) {
     const cid = this.getCarts(cartid);
     const pid = productmanager.getProductsById(prodid);
