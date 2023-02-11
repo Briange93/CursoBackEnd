@@ -26,7 +26,7 @@ export default class ProductManager{
     getProductsById = async (id) => {
        let respuesta = JSON.parse(await fs.readFile(this.path, 'utf-8'))
        let productById = respuesta.filter(product => product.id === id)
-       console.log(productById);
+       return respuesta
     }
     deleteProductsById = async (id) =>{
         let respuesta = JSON.parse(await fs.readFile(this.path, 'utf-8'))

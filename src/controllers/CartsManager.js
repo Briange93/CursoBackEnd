@@ -1,7 +1,7 @@
 import {promises as fs} from "fs";
 import ProductManager from "./ProductManager.js";
 
-
+const productmanager = new ProductManager()
 
 export default class CartManager {
   constructor() {
@@ -19,25 +19,22 @@ export default class CartManager {
     return id
   }
   async getCartByID(id) {
-    const cid = createCart(id)
+    const cid = this.getCarts(id)
     const cartDB = await this.getCarts()
     const cartFound = cartDB.find((item) => item.id === cid)
     return cartFound ?? []
   }
   async addItemToCart(cartid, prodid) {
-    const cid = check.id(cartid);
-    const pid = check.id(prodid);
+    const cid = this.getCarts(cartid);
+    const pid = productmanager.getProductsById(prodid);
     const cartDB = await this.getCarts()
 
-    const cartFound = cartDB.find((item) => item.id === cid)
+    const cartFound = String(cartDB.find((item) => item.id === cid))
     
-    const prod = await ProductManager.getProductById(pid)
+    const prod = await productmanager.getProductsById(pid)
     
     const item = cartFound.products.find(prod => { return prod.id == pid })
     item ? item.quantity++ : cartFound.products.push({ id: prod.id, quantity: 1 })
     await fs.writeFile(this.path, JSON.stringify(cartDB))
   }
 }
-
-
-
