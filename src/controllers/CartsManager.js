@@ -29,7 +29,7 @@ export default class CartManager {
     const pid = productmanager.getProductsById(prodid);
     const cartDB = await this.getCarts()
 
-    const cartFound = String(cartDB.find((item) => item.id === cid))
+    const cartFound = cartDB.find((item) => item.id === cid)
     
     const prod = await productmanager.getProductsById(pid)
     
