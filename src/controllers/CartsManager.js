@@ -49,7 +49,7 @@ export default class CartManager {
     const allCarts = await this.readCarts()
     const cartfilter = allCarts.filter(cart => cart.id != cartid)
 
-    if(all.products.some(prod => prod.id === prodid)){
+    if(cid.products.some(prod => prod.id === prodid)){
       let productInCart = cid.products.find(prod => prod.id === prodid)
       productInCart.quantity++
     }
