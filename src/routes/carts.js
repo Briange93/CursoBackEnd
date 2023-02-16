@@ -2,7 +2,7 @@ import { Router } from "express";
 import CartManager from "../controllers/CartsManager.js";
 
 const routerCart = Router()
-const cartManager = new CartManager('src/models/carts.txt')
+const cartManager = new CartManager
 
 routerCart.get('/', async (req,res) =>{
     let message = await cartManager.getCarts()
@@ -21,9 +21,9 @@ routerCart.get('/:cid', async (req, res) => {
   })
  //hasta aca vamos bien.
 routerCart.post('/:cid/products/:pid',async (req, res) => {
-    const params = req.params
-      await cartManager.addItemToCart(parseInt(params.cid), parseInt(params.pid))
-      res.send(parseInt(params.cid))
+    let cartId = req.params.cid
+    let prodId = req.params.pid
+    res.send(await cartManager.addItemToCart(cartId,prodId))
     
   })
 

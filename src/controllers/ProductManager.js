@@ -11,6 +11,10 @@ export default class ProductManager{
         }
         return this.idIncrement
     }
+    async readProducts(){
+        let products = await fs.readFile(this.path, 'utf-8')
+        return JSON.parse(products)
+      }
   addProduct = async (producto) =>{
     const prods = JSON.parse(await fs.readFile(this.path, 'utf-8'))
     producto.id = ProductManager.incrementarID()

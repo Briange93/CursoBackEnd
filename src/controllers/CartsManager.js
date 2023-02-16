@@ -7,6 +7,13 @@ export default class CartManager {
   constructor() {
     this.path = './src/models/carts.txt'
   }
+  async readCarts(){
+    let carts = await fs.readFile(this.path, 'utf-8')
+    return JSON.parse(carts)
+  }
+  async writeCarts(carts){
+    await fs.writeFile(this.path, JSON.stringify(carts))
+  }
   async getCarts() {
     let respuesta = JSON.parse(await fs.readFile(this.path, 'utf-8'))
     return respuesta;
@@ -25,17 +32,30 @@ export default class CartManager {
     return cartFound ?? []
   }
    //hasta aca vamos bien.
-  async addItemToCart(cartid, prodid) {
+  /*async addItemToCart(cartid, prodid) {
     const cid = this.getCarts(cartid);
-    const pid = productmanager.getProductsById(prodid);
+    const pid = await productmanager.getProductsById(prodid);
     const cartDB = await this.getCarts()
 
     const cartFound = cartDB.find((item) => item.id === cid)
-    
-    const prod = await productmanager.getProductsById(pid)
-    
+    const prod = productmanager.getProductsById(pid)
     const item = cartFound.products.find(prod => { return prod.id == pid })
     item ? item.quantity++ : cartFound.products.push({ id: prod.id, quantity: 1 })
     await fs.writeFile(this.path, JSON.stringify(cartDB))
+  }*/
+  async addItemToCart(cartid, prodid) {
+    const cid = await this.getCarts(cartid)
+    const pid = await productmanager.getProductsById(prodid)
+    const allCarts = await this.readCarts()
+    const cartfilter = allCarts.filter(cart => cart.id != cartid)
+
+    if(all.products.some(prod => prod.id === prodid)){
+      let productInCart = cid.products.find(prod => prod.id === prodid)
+      productInCart.quantity++
+    }
+    
+    
+    const cartconcat = [{id : cartid, products : [{id: pid.id, quantity :1}]}, ...cartfilter]
+    await this.writeCarts(cartconcat)
   }
 }
