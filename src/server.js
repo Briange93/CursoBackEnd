@@ -1,6 +1,6 @@
 import express from 'express';
 import routerProd from './routes/products.js';
-//import routerCart from './routes/carts.js';
+import routerCart from './routes/carts.js';
 import { __dirname } from './utils/path.js';
 import {engine} from 'express-handlebars';
 
@@ -13,7 +13,7 @@ app.use(express.urlencoded({extended:true}))
 
 app.use('/static',express.static(__dirname +'../../public'))
 
-//app.use('/api/carts', routerCart)
+app.use('/api/carts', routerCart)
 app.use('/api/products', routerProd)
 
 //app.engine('handlebars',engine())
