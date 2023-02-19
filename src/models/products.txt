@@ -1,0 +1,1 @@
+[{"title":"silla","description":"para sentarse","price":1000,"thumbmail":"bablabla.com/img","code":"abc123","stock":283,"id":1},{"title":"mesa","description":"para comer","price":2000,"thumbmail":"bablabla.com/img","code":"abc124","stock":28322,"id":2}]

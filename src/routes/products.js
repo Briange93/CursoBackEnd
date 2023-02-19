@@ -9,7 +9,7 @@ routerProd.get('/', async (req, res) => {
     res.send(allProducts);
 });
 routerProd.get('/:pid', async (req, res) =>{
-    let id =parseInt(req.params.id);
+    let id = parseInt(req.params.id);
     res.send(productos.getProductsById(id));
 });
 routerProd.post('/', async(req,res) =>{
